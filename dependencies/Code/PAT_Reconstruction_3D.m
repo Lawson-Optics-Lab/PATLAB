@@ -77,7 +77,8 @@ f = waitbar(0,'1','Name','BackProjection Reconstruction');
 iter = 0;
 
 if size(sensorsPositions,2)==2; sensorsPositions = cat(2,sensorsPositions, squeeze(zeros(size(sensorsPositions,1), 1 ,size(sensorsPositions,3)))); end
-if dMethod~=0; total_angle_weight = zeros(size(pa_img)); end
+% if dMethod~=0; total_angle_weight = zeros(size(pa_img)); end
+total_angle_weight = zeros(size(pa_img));
 if coherentFactor; coherent_square = zeros(size(pa_img)); end
 % if minimumVariance;  temp_img_MV = zeros(size(pa_img)); end
 pa_img0 = zeros(size(pa_img)); % image buffer
@@ -253,7 +254,9 @@ for i = 1:size(inputData,1) %scans
             total_angle_weight = total_angle_weight + angle_weight;
             temp_img = pa_data_tmp(IDX).*angle_weight;
         else
-            temp_img = pa_data_tmp(IDX);
+            angle_weight = 1./abs(rr2).^dPow;
+            total_angle_weight = total_angle_weight + angle_weight;
+            temp_img = pa_data_tmp(IDX).*angle_weight;
         end
         pa_img0 = pa_img0 + temp_img;
         if coherentFactor; coherent_square = coherent_square + temp_img.^2; end
@@ -265,7 +268,8 @@ if coherentFactor
 else
     pa_img =  pa_img0;
 end
-if dMethod~=0; pa_img = pa_img./total_angle_weight; end
+% if dMethod~=0; pa_img = pa_img./total_angle_weight; end
+pa_img = pa_img./total_angle_weight;
 toc
 delete(f)
 end
