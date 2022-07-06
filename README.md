@@ -1,5 +1,5 @@
 # PATLAB
-<img src="images/PATLAB_Logo.png" width="300">
+<img src="images/PatLab_Logo_2.png" width="300">
 
 *PATLAB, a graphical computational software package for photoacoustic computed tomography research*
 
