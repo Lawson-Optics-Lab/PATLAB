@@ -9,4 +9,4 @@ Photoacoustic tomography (PAT) provides high resolution optical images of tissue
 
 Keywords: Photoacoustic tomography, image reconstruction, back projection, filtered back projection, universal back projection, time reversal
 
-<img src="images/Western_Logo.png" width="300">
+<img src="images/lawsonlogo_272x183.jpg" width="200"><img src="images/Western_Logo.png" width="300">
